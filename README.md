@@ -1,69 +1,34 @@
-# base
+# createplayerelectron
 
-## Project setup
+An Electron application with Vue
 
-```
-# yarn
-yarn
+## Recommended IDE Setup
 
-# npm
-npm install
+- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
-# pnpm
-pnpm install
+## Project Setup
 
-# pnpm
-bun install
+### Install
+
+```bash
+$ npm install
 ```
 
-### Compiles and hot-reloads for development
+### Development
 
-```
-# yarn
-yarn dev
-
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# bun
-bun run dev
+```bash
+$ npm run dev
 ```
 
-### Compiles and minifies for production
+### Build
 
+```bash
+# For windows
+$ npm run build:win
+
+# For macOS
+$ npm run build:mac
+
+# For Linux
+$ npm run build:linux
 ```
-# yarn
-yarn build
-
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# bun
-bun run build
-```
-
-### Lints and fixes files
-
-```
-# yarn
-yarn lint
-
-# npm
-npm run lint
-
-# pnpm
-pnpm lint
-
-# bun
-bun run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://vitejs.dev/config/).

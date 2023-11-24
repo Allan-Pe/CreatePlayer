@@ -1,3 +1,9 @@
+<script setup>
+import { reactive } from 'vue'
+
+const versions = reactive({ ...window.electron.process.versions })
+</script>
+
 <template>
   <v-container class="fill-height">
     <v-responsive class="text-center fill-height">
@@ -14,7 +20,7 @@
           <div id="chart">
             <apexchart type="radar" width="100%" height="450" :options="chartOptions" :series="series"></apexchart>
           </div>
-          <div>
+          <div class="statsBlock">
           <h2>Modifier les données du graphique</h2>
           <ul class="points">
             <li v-for="(value, index) in series[0].data" :key="index">
@@ -179,6 +185,7 @@ body{
 }
 #chart{
   text-align: -webkit-center;
+  margin: 35px 5%;
 }
 .flexStats{
   display: flex;
@@ -203,14 +210,21 @@ li{
 .points{
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   list-style-type: none;
 }
 .slidePoints{
   width: -webkit-fill-available;
 }
+.statsBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .title{
   margin-top: 30px;
   margin-bottom: 30px;
+  text-align: center;
 }
 </style>
+
