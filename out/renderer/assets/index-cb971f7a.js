@@ -17502,15 +17502,23 @@ var vue3Apexcharts_commonExports = vue3Apexcharts_common.exports;
 const VueApexCharts = /* @__PURE__ */ getDefaultExportFromCjs(vue3Apexcharts_commonExports);
 const Versions_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1 = /* @__PURE__ */ createBaseVNode("h1", { class: "text-h3 font-weight-bold title" }, "Create your player", -1);
-const _hoisted_2 = /* @__PURE__ */ createBaseVNode("label", { for: "listCate" }, "Liste des compétences", -1);
-const _hoisted_3 = /* @__PURE__ */ createBaseVNode("br", null, null, -1);
-const _hoisted_4 = { id: "chart" };
-const _hoisted_5 = { class: "statsBlock" };
-const _hoisted_6 = /* @__PURE__ */ createBaseVNode("h2", null, "Modifier les données du graphique", -1);
-const _hoisted_7 = { class: "points" };
-const _hoisted_8 = { class: "flexStats" };
-const _hoisted_9 = ["onUpdate:modelValue"];
-const _hoisted_10 = ["onUpdate:modelValue"];
+const _hoisted_2 = {
+  cols: "auto",
+  style: { "display": "flex", "flex-direction": "column", "align-items": "center" }
+};
+const _hoisted_3 = /* @__PURE__ */ createBaseVNode("label", { for: "listCate" }, "Liste des compétences", -1);
+const _hoisted_4 = /* @__PURE__ */ createBaseVNode("br", null, null, -1);
+const _hoisted_5 = {
+  key: 0,
+  cols: "auto"
+};
+const _hoisted_6 = { id: "chart" };
+const _hoisted_7 = { class: "statsBlock" };
+const _hoisted_8 = /* @__PURE__ */ createBaseVNode("h2", null, "Modifier les données du graphique", -1);
+const _hoisted_9 = { class: "points" };
+const _hoisted_10 = { class: "flexStats" };
+const _hoisted_11 = ["onUpdate:modelValue"];
+const _hoisted_12 = ["onUpdate:modelValue"];
 const __default__ = {
   components: {
     apexchart: VueApexCharts
@@ -17540,7 +17548,7 @@ const __default__ = {
           }
         },
         title: {
-          text: "Radar with Polygon Fill"
+          text: " "
         },
         colors: ["#0075ff", "#EB7628", "#83D45A"],
         markers: {
@@ -17605,7 +17613,7 @@ const __default__ = {
           }
         },
         title: {
-          text: "Radar with Polygon Fill"
+          text: " "
         },
         colors: ["#0075ff", "#EB7628", "#83D45A"],
         markers: {
@@ -17647,9 +17655,7 @@ const _sfc_main$1 = /* @__PURE__ */ Object.assign(__default__, {
   setup(__props) {
     reactive({ ...window.electron.process.versions });
     return (_ctx, _cache) => {
-      const _component_v_col = resolveComponent("v-col");
       const _component_apexchart = resolveComponent("apexchart");
-      const _component_v_row = resolveComponent("v-row");
       const _component_v_responsive = resolveComponent("v-responsive");
       const _component_v_container = resolveComponent("v-container");
       return openBlock(), createBlock(_component_v_container, { class: "fill-height" }, {
@@ -17657,77 +17663,62 @@ const _sfc_main$1 = /* @__PURE__ */ Object.assign(__default__, {
           createVNode(_component_v_responsive, { class: "text-center fill-height" }, {
             default: withCtx(() => [
               _hoisted_1,
-              createVNode(_component_v_row, null, {
-                default: withCtx(() => [
-                  createVNode(_component_v_col, {
-                    cols: "auto",
-                    style: { "display": "flex", "flex-direction": "column", "align-items": "center" }
-                  }, {
-                    default: withCtx(() => [
-                      _hoisted_2,
-                      createTextVNode(),
-                      _hoisted_3,
-                      withDirectives(createBaseVNode("input", {
-                        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.InputListCate = $event),
-                        type: "text",
-                        onKeyup: _cache[1] || (_cache[1] = withKeys((...args) => _ctx.ListOfCate && _ctx.ListOfCate(...args), ["enter"])),
-                        name: "listeCate",
-                        placeholder: "compétence 1, compétence 2, ...",
-                        class: "inputCate"
-                      }, null, 544), [
-                        [vModelText, _ctx.InputListCate]
-                      ])
-                    ]),
-                    _: 1
-                  }),
-                  _ctx.isEnter ? (openBlock(), createBlock(_component_v_col, {
-                    key: 0,
-                    cols: "auto"
-                  }, {
-                    default: withCtx(() => [
-                      createBaseVNode("div", _hoisted_4, [
-                        createVNode(_component_apexchart, {
-                          type: "radar",
-                          width: "100%",
-                          height: "450",
-                          options: _ctx.chartOptions,
-                          series: _ctx.series
-                        }, null, 8, ["options", "series"])
-                      ]),
-                      createBaseVNode("div", _hoisted_5, [
-                        _hoisted_6,
-                        createBaseVNode("ul", _hoisted_7, [
-                          (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.series[0].data, (value, index) => {
-                            return openBlock(), createElementBlock("li", { key: index }, [
-                              createBaseVNode("div", _hoisted_8, [
-                                createBaseVNode("span", null, toDisplayString(_ctx.TbCate[index]) + " : ", 1),
-                                withDirectives(createBaseVNode("input", {
-                                  class: "inputPoints",
-                                  "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event
-                                }, null, 8, _hoisted_9), [
-                                  [vModelText, _ctx.series[0].data[index]]
-                                ])
-                              ]),
-                              withDirectives(createBaseVNode("input", {
-                                class: "slidePoints",
-                                type: "range",
-                                "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event,
-                                min: "0",
-                                max: "5",
-                                step: "1"
-                              }, null, 8, _hoisted_10), [
-                                [vModelText, _ctx.series[0].data[index]]
-                              ])
-                            ]);
-                          }), 128))
-                        ])
-                      ])
-                    ]),
-                    _: 1
-                  })) : createCommentVNode("", true)
+              createBaseVNode("div", null, [
+                createBaseVNode("div", _hoisted_2, [
+                  _hoisted_3,
+                  createTextVNode(),
+                  _hoisted_4,
+                  withDirectives(createBaseVNode("input", {
+                    "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.InputListCate = $event),
+                    type: "text",
+                    onKeyup: _cache[1] || (_cache[1] = withKeys((...args) => _ctx.ListOfCate && _ctx.ListOfCate(...args), ["enter"])),
+                    name: "listeCate",
+                    placeholder: "compétence 1, compétence 2, ...",
+                    class: "inputCate"
+                  }, null, 544), [
+                    [vModelText, _ctx.InputListCate]
+                  ])
                 ]),
-                _: 1
-              })
+                _ctx.isEnter ? (openBlock(), createElementBlock("div", _hoisted_5, [
+                  createBaseVNode("div", _hoisted_6, [
+                    createVNode(_component_apexchart, {
+                      type: "radar",
+                      width: "100%",
+                      height: "450",
+                      options: _ctx.chartOptions,
+                      series: _ctx.series
+                    }, null, 8, ["options", "series"])
+                  ]),
+                  createBaseVNode("div", _hoisted_7, [
+                    _hoisted_8,
+                    createBaseVNode("ul", _hoisted_9, [
+                      (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.series[0].data, (value, index) => {
+                        return openBlock(), createElementBlock("li", { key: index }, [
+                          createBaseVNode("div", _hoisted_10, [
+                            createBaseVNode("span", null, toDisplayString(_ctx.TbCate[index]) + " : ", 1),
+                            withDirectives(createBaseVNode("input", {
+                              class: "inputPoints",
+                              "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event
+                            }, null, 8, _hoisted_11), [
+                              [vModelText, _ctx.series[0].data[index]]
+                            ])
+                          ]),
+                          withDirectives(createBaseVNode("input", {
+                            class: "slidePoints",
+                            type: "range",
+                            "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event,
+                            min: "0",
+                            max: "5",
+                            step: "1"
+                          }, null, 8, _hoisted_12), [
+                            [vModelText, _ctx.series[0].data[index]]
+                          ])
+                        ]);
+                      }), 128))
+                    ])
+                  ])
+                ])) : createCommentVNode("", true)
+              ])
             ]),
             _: 1
           })

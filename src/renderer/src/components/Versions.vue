@@ -10,13 +10,13 @@ const versions = reactive({ ...window.electron.process.versions })
 
       <h1 class="text-h3 font-weight-bold title">Create your player</h1>
 
-      <v-row>
-        <v-col cols="auto" style="display: flex; flex-direction: column; align-items: center;">
+      <div>
+        <div cols="auto" style="display: flex; flex-direction: column; align-items: center;">
           <label for="listCate">Liste des compétences</label> <br>
           <input v-model=InputListCate type="text" @keyup.enter="ListOfCate" name="listeCate" placeholder="compétence 1, compétence 2, ..." class="inputCate">
-        </v-col>
+        </div>
         
-        <v-col v-if="isEnter" cols="auto">
+        <div v-if="isEnter" cols="auto">
           <div id="chart">
             <apexchart type="radar" width="100%" height="450" :options="chartOptions" :series="series"></apexchart>
           </div>
@@ -33,8 +33,8 @@ const versions = reactive({ ...window.electron.process.versions })
             </li>
           </ul>
         </div>
-        </v-col>
-      </v-row>
+        </div>
+      </div>
     </v-responsive>
   </v-container>
 </template>
@@ -73,7 +73,7 @@ export default {
               }
             },
             title: {
-              text: 'Radar with Polygon Fill'
+              text: ' '
             },
             colors: ['#0075ff','#EB7628', '#83D45A'],
             markers: {
@@ -141,7 +141,7 @@ export default {
               }
             },
             title: {
-              text: 'Radar with Polygon Fill'
+              text: ' '
             },
             colors: ['#0075ff','#EB7628', '#83D45A'],
             markers: {

@@ -19,7 +19,8 @@
   "dependencies": {
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^2.0.0",
-    "vue3-apexcharts": "^1.4.4"
+    "vue3-apexcharts": "^1.4.4",
+    "vuetify": "^3.4.3"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^1.0.1",
