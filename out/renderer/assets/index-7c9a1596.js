@@ -17502,23 +17502,43 @@ var vue3Apexcharts_commonExports = vue3Apexcharts_common.exports;
 const VueApexCharts = /* @__PURE__ */ getDefaultExportFromCjs(vue3Apexcharts_commonExports);
 const Versions_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1 = /* @__PURE__ */ createBaseVNode("h1", { class: "text-h3 font-weight-bold title" }, "Create your player", -1);
-const _hoisted_2 = {
+const _hoisted_2 = { style: { "display": "flex" } };
+const _hoisted_3 = { class: "containerGraph" };
+const _hoisted_4 = {
   cols: "auto",
   style: { "display": "flex", "flex-direction": "column", "align-items": "center" }
 };
-const _hoisted_3 = /* @__PURE__ */ createBaseVNode("label", { for: "listCate" }, "Liste des compétences", -1);
-const _hoisted_4 = /* @__PURE__ */ createBaseVNode("br", null, null, -1);
-const _hoisted_5 = {
+const _hoisted_5 = /* @__PURE__ */ createBaseVNode("label", { for: "listCate" }, "Liste des compétences", -1);
+const _hoisted_6 = /* @__PURE__ */ createBaseVNode("br", null, null, -1);
+const _hoisted_7 = {
   key: 0,
   cols: "auto"
 };
-const _hoisted_6 = { id: "chart" };
-const _hoisted_7 = { class: "statsBlock" };
-const _hoisted_8 = /* @__PURE__ */ createBaseVNode("h2", null, "Modifier les données du graphique", -1);
-const _hoisted_9 = { class: "points" };
-const _hoisted_10 = { class: "flexStats" };
-const _hoisted_11 = ["onUpdate:modelValue"];
-const _hoisted_12 = ["onUpdate:modelValue"];
+const _hoisted_8 = { id: "chart" };
+const _hoisted_9 = { class: "statsBlock" };
+const _hoisted_10 = /* @__PURE__ */ createBaseVNode("h2", null, "Modifier les données du graphique", -1);
+const _hoisted_11 = { class: "points" };
+const _hoisted_12 = { class: "flexStats" };
+const _hoisted_13 = ["onUpdate:modelValue"];
+const _hoisted_14 = ["onUpdate:modelValue"];
+const _hoisted_15 = { class: "containerGraph" };
+const _hoisted_16 = {
+  cols: "auto",
+  style: { "display": "flex", "flex-direction": "column", "align-items": "center" }
+};
+const _hoisted_17 = /* @__PURE__ */ createBaseVNode("label", { for: "listCate" }, "Liste des Techniques", -1);
+const _hoisted_18 = /* @__PURE__ */ createBaseVNode("br", null, null, -1);
+const _hoisted_19 = {
+  key: 0,
+  cols: "auto"
+};
+const _hoisted_20 = { id: "chart2" };
+const _hoisted_21 = { class: "statsBlock" };
+const _hoisted_22 = /* @__PURE__ */ createBaseVNode("h2", null, "Modifier les données du graphique", -1);
+const _hoisted_23 = { class: "points" };
+const _hoisted_24 = { class: "flexStats" };
+const _hoisted_25 = ["onUpdate:modelValue"];
+const _hoisted_26 = ["onUpdate:modelValue"];
 const __default__ = {
   components: {
     apexchart: VueApexCharts
@@ -17527,7 +17547,9 @@ const __default__ = {
   data() {
     return {
       isEnter: false,
+      isEnter2: false,
       InputListCate: "",
+      InputListTech: "",
       chartOptions: {
         chart: {
           height: 350,
@@ -17580,8 +17602,67 @@ const __default__ = {
           }
         }
       },
+      chartOptions2: {
+        chart: {
+          height: 350,
+          type: "radar"
+        },
+        dataLabels: {
+          enabled: true
+        },
+        plotOptions: {
+          radar: {
+            size: 140,
+            polygons: {
+              strokeColors: "#e9e9e9",
+              fill: {
+                colors: ["#f8f8f8", "#fff"]
+              }
+            }
+          }
+        },
+        title: {
+          text: " "
+        },
+        colors: ["#9aa1d1", "#EB7628", "#83D45A"],
+        markers: {
+          size: 4,
+          colors: ["#fff"],
+          strokeColor: "#0075ff",
+          strokeWidth: 2
+        },
+        tooltip: {
+          y: {
+            formatter: function(val) {
+              return val;
+            }
+          }
+        },
+        xaxis: {
+          categories: ["oui", "non", "oui"]
+        },
+        yaxis: {
+          tickAmount: 7,
+          labels: {
+            formatter: function(val, i) {
+              if (i % 2 === 0) {
+                return val;
+              } else {
+                return "";
+              }
+            }
+          }
+        }
+      },
       TbCate: [],
+      TbTech: [],
       series: [
+        {
+          name: "series-1",
+          data: []
+        }
+      ],
+      series2: [
         {
           name: "series-1",
           data: []
@@ -17615,11 +17696,9 @@ const __default__ = {
         title: {
           text: " "
         },
-        colors: ["#0075ff", "#EB7628", "#83D45A"],
+        colors: ["#C61B6A", "#EB7628", "#83D45A"],
         markers: {
           size: 4,
-          colors: ["#fff"],
-          strokeColor: "#0075ff",
           strokeWidth: 2
         },
         tooltip: {
@@ -17631,6 +17710,62 @@ const __default__ = {
         },
         xaxis: {
           categories: ListOfCate
+        },
+        yaxis: {
+          tickAmount: 5,
+          min: 0,
+          max: 5,
+          labels: {
+            formatter: function(val, i) {
+              if (i % 2 === 0) {
+                return val;
+              } else {
+                return "";
+              }
+            }
+          }
+        }
+      };
+    },
+    ListOfTech() {
+      this.isEnter2 = true;
+      const joursString = this.InputListTech;
+      const ListOfTech = joursString ? joursString.split(",") : [];
+      this.TbTech = ListOfTech;
+      this.series2[0].data = ListOfTech.map(() => 2);
+      return this.chartOptions2 = {
+        chart: {
+          height: 350,
+          type: "radar"
+        },
+        plotOptions: {
+          radar: {
+            size: 140,
+            polygons: {
+              strokeColors: "#e9e9e9",
+              fill: {
+                colors: ["#f8f8f8", "#fff"]
+              }
+            }
+          }
+        },
+        title: {
+          text: " "
+        },
+        colors: ["#8B008B", "#EB7628", "#83D45A"],
+        markers: {
+          size: 4,
+          strokeWidth: 2
+        },
+        tooltip: {
+          y: {
+            formatter: function(val) {
+              return val;
+            }
+          }
+        },
+        xaxis: {
+          categories: ListOfTech
         },
         yaxis: {
           tickAmount: 5,
@@ -17663,61 +17798,119 @@ const _sfc_main$1 = /* @__PURE__ */ Object.assign(__default__, {
           createVNode(_component_v_responsive, { class: "text-center fill-height" }, {
             default: withCtx(() => [
               _hoisted_1,
-              createBaseVNode("div", null, [
-                createBaseVNode("div", _hoisted_2, [
-                  _hoisted_3,
-                  createTextVNode(),
-                  _hoisted_4,
-                  withDirectives(createBaseVNode("input", {
-                    "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.InputListCate = $event),
-                    type: "text",
-                    onKeyup: _cache[1] || (_cache[1] = withKeys((...args) => _ctx.ListOfCate && _ctx.ListOfCate(...args), ["enter"])),
-                    name: "listeCate",
-                    placeholder: "compétence 1, compétence 2, ...",
-                    class: "inputCate"
-                  }, null, 544), [
-                    [vModelText, _ctx.InputListCate]
-                  ])
-                ]),
-                _ctx.isEnter ? (openBlock(), createElementBlock("div", _hoisted_5, [
-                  createBaseVNode("div", _hoisted_6, [
-                    createVNode(_component_apexchart, {
-                      type: "radar",
-                      width: "100%",
-                      height: "450",
-                      options: _ctx.chartOptions,
-                      series: _ctx.series
-                    }, null, 8, ["options", "series"])
+              createBaseVNode("div", _hoisted_2, [
+                createBaseVNode("div", _hoisted_3, [
+                  createBaseVNode("div", _hoisted_4, [
+                    _hoisted_5,
+                    createTextVNode(),
+                    _hoisted_6,
+                    withDirectives(createBaseVNode("input", {
+                      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.InputListCate = $event),
+                      type: "text",
+                      onKeyup: _cache[1] || (_cache[1] = withKeys((...args) => _ctx.ListOfCate && _ctx.ListOfCate(...args), ["enter"])),
+                      name: "listeCate",
+                      placeholder: "compétence 1, compétence 2, ...",
+                      class: "inputCate"
+                    }, null, 544), [
+                      [vModelText, _ctx.InputListCate]
+                    ])
                   ]),
-                  createBaseVNode("div", _hoisted_7, [
-                    _hoisted_8,
-                    createBaseVNode("ul", _hoisted_9, [
-                      (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.series[0].data, (value, index) => {
-                        return openBlock(), createElementBlock("li", { key: index }, [
-                          createBaseVNode("div", _hoisted_10, [
-                            createBaseVNode("span", null, toDisplayString(_ctx.TbCate[index]) + " : ", 1),
+                  _ctx.isEnter ? (openBlock(), createElementBlock("div", _hoisted_7, [
+                    createBaseVNode("div", _hoisted_8, [
+                      createVNode(_component_apexchart, {
+                        type: "radar",
+                        width: "100%",
+                        height: "350",
+                        options: _ctx.chartOptions,
+                        series: _ctx.series
+                      }, null, 8, ["options", "series"])
+                    ]),
+                    createBaseVNode("div", _hoisted_9, [
+                      _hoisted_10,
+                      createBaseVNode("ul", _hoisted_11, [
+                        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.series[0].data, (value, index) => {
+                          return openBlock(), createElementBlock("li", { key: index }, [
+                            createBaseVNode("div", _hoisted_12, [
+                              createBaseVNode("span", null, toDisplayString(_ctx.TbCate[index]) + " : ", 1),
+                              withDirectives(createBaseVNode("input", {
+                                class: "inputPoints",
+                                "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event
+                              }, null, 8, _hoisted_13), [
+                                [vModelText, _ctx.series[0].data[index]]
+                              ])
+                            ]),
                             withDirectives(createBaseVNode("input", {
-                              class: "inputPoints",
-                              "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event
-                            }, null, 8, _hoisted_11), [
+                              class: "slidePoints rangecolor",
+                              type: "range",
+                              "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event,
+                              min: "0",
+                              max: "5",
+                              step: "1"
+                            }, null, 8, _hoisted_14), [
                               [vModelText, _ctx.series[0].data[index]]
                             ])
-                          ]),
-                          withDirectives(createBaseVNode("input", {
-                            class: "slidePoints",
-                            type: "range",
-                            "onUpdate:modelValue": ($event) => _ctx.series[0].data[index] = $event,
-                            min: "0",
-                            max: "5",
-                            step: "1"
-                          }, null, 8, _hoisted_12), [
-                            [vModelText, _ctx.series[0].data[index]]
-                          ])
-                        ]);
-                      }), 128))
+                          ]);
+                        }), 128))
+                      ])
                     ])
-                  ])
-                ])) : createCommentVNode("", true)
+                  ])) : createCommentVNode("", true)
+                ]),
+                createBaseVNode("div", _hoisted_15, [
+                  createBaseVNode("div", _hoisted_16, [
+                    _hoisted_17,
+                    createTextVNode(),
+                    _hoisted_18,
+                    withDirectives(createBaseVNode("input", {
+                      "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => _ctx.InputListTech = $event),
+                      type: "text",
+                      onKeyup: _cache[3] || (_cache[3] = withKeys((...args) => _ctx.ListOfTech && _ctx.ListOfTech(...args), ["enter"])),
+                      name: "listeCate",
+                      placeholder: "technique 1, technique 2, ...",
+                      class: "inputCate"
+                    }, null, 544), [
+                      [vModelText, _ctx.InputListTech]
+                    ])
+                  ]),
+                  _ctx.isEnter2 ? (openBlock(), createElementBlock("div", _hoisted_19, [
+                    createBaseVNode("div", _hoisted_20, [
+                      createVNode(_component_apexchart, {
+                        type: "radar",
+                        width: "100%",
+                        height: "350",
+                        options: _ctx.chartOptions2,
+                        series: _ctx.series2
+                      }, null, 8, ["options", "series"])
+                    ]),
+                    createBaseVNode("div", _hoisted_21, [
+                      _hoisted_22,
+                      createBaseVNode("ul", _hoisted_23, [
+                        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.series2[0].data, (value, index) => {
+                          return openBlock(), createElementBlock("li", { key: index }, [
+                            createBaseVNode("div", _hoisted_24, [
+                              createBaseVNode("span", null, toDisplayString(_ctx.TbTech[index]) + " : ", 1),
+                              withDirectives(createBaseVNode("input", {
+                                class: "inputPoints",
+                                "onUpdate:modelValue": ($event) => _ctx.series2[0].data[index] = $event
+                              }, null, 8, _hoisted_25), [
+                                [vModelText, _ctx.series2[0].data[index]]
+                              ])
+                            ]),
+                            withDirectives(createBaseVNode("input", {
+                              class: "slidePoints rangecolor2",
+                              type: "range",
+                              "onUpdate:modelValue": ($event) => _ctx.series2[0].data[index] = $event,
+                              min: "0",
+                              max: "5",
+                              step: "1"
+                            }, null, 8, _hoisted_26), [
+                              [vModelText, _ctx.series2[0].data[index]]
+                            ])
+                          ]);
+                        }), 128))
+                      ])
+                    ])
+                  ])) : createCommentVNode("", true)
+                ])
               ])
             ]),
             _: 1

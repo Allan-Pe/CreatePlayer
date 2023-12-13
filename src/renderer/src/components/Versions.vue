@@ -19,7 +19,7 @@ const versions = reactive({ ...window.electron.process.versions })
           
           <div v-if="isEnter" cols="auto">
             <div id="chart">
-              <apexchart type="radar" width="100%" height="350" :options="chartOptions" :series="series"></apexchart>
+              <apexchart type="radar" width="100%" height="350" :options="chartOptions" :series="series" ref="chart1"></apexchart>
             </div>
             <div class="statsBlock">
               <h2>Modifier les données du graphique</h2>
@@ -36,15 +36,27 @@ const versions = reactive({ ...window.electron.process.versions })
             </div>
           </div>
         </div>
+
+        <button v-if="isEnter == false || isEnter2 == false || InputListCate == '' || InputListTech == '' " 
+          class="btnNoDl">
+          Fusionner les stats
+        </button>
+
+        <button v-if="isEnter && isEnter2 && InputListCate && InputListTech" 
+          class="btnDl" 
+          @click="downloadCharts">
+          Fusionner les stats
+        </button>
+
         <div class="containerGraph">
           <div cols="auto" style="display: flex; flex-direction: column; align-items: center;">
-            <label for="listCate">Liste des Techniques</label> <br>
-            <input v-model=InputListTech type="text" @keyup.enter="ListOfTech" name="listeCate" placeholder="compétence 1, compétence 2, ..." class="inputCate">
+            <label for="listCate">Liste des techniques</label> <br>
+            <input v-model=InputListTech type="text" @keyup.enter="ListOfTech" name="listeCate" placeholder="technique 1, technique 2, ..." class="inputCate">
           </div>
           
           <div v-if="isEnter2" cols="auto">
             <div id="chart2">
-              <apexchart type="radar" width="100%" height="350" :options="chartOptions2" :series="series2"></apexchart>
+              <apexchart type="radar" width="100%" height="350" :options="chartOptions2" :series="series2" ref="chart2"></apexchart>
             </div>
             <div class="statsBlock">
               <h2>Modifier les données du graphique</h2>
@@ -68,6 +80,7 @@ const versions = reactive({ ...window.electron.process.versions })
 
 <script>
 import VueApexCharts from "vue3-apexcharts";
+import html2canvas from "html2canvas";
 
 export default {
   components: {
@@ -320,7 +333,72 @@ export default {
               }
             }
       }
-    }
+    },
+    async downloadCharts() {
+      const chart1 = this.$refs.chart1.$el;
+      const chart2 = this.$refs.chart2.$el;
+
+      // Désactiver le menu déroulant avant la capture
+      this.$refs.chart1.updateOptions({
+        chart: {
+          toolbar: {
+            show: false,
+          },
+        },
+      });
+      this.$refs.chart2.updateOptions({
+        chart: {
+          toolbar: {
+            show: false,
+          },
+        },
+      });
+
+      // Capture du contenu des graphiques avec html2canvas
+      const canvas1 = await html2canvas(chart1);
+      const canvas2 = await html2canvas(chart2);
+
+      // Réactiver le menu déroulant après la capture avec une attente de 1 seconde
+      setTimeout(() => {
+        this.$refs.chart1.updateOptions({
+          chart: {
+            toolbar: {
+              show: true,
+            },
+          },
+        });
+        this.$refs.chart2.updateOptions({
+          chart: {
+            toolbar: {
+              show: true,
+            },
+          },
+        });
+      }, 1000);
+
+      // Fusion des deux graphiques dans une seule image
+      const mergedCanvas = document.createElement("canvas");
+      mergedCanvas.width = canvas1.width + canvas2.width;
+      mergedCanvas.height = Math.max(canvas1.height, canvas2.height);
+      const context = mergedCanvas.getContext("2d");
+      context.drawImage(canvas1, 0, 0);
+      context.drawImage(canvas2, canvas1.width - 50, 0);
+
+      // Calculer la position verticale centrée pour le deuxième graphique
+      const centerY = Math.abs(canvas1.height - canvas2.height) / 2;
+      
+      // Dessiner le premier graphique
+      context.drawImage(canvas1, 0, 0);
+
+      // Dessiner le deuxième graphique centré verticalement
+      context.drawImage(canvas2, canvas1.width, centerY);
+
+      // Téléchargement de l'image fusionnée
+      const downloadLink = document.createElement("a");
+      downloadLink.href = mergedCanvas.toDataURL("image/png");
+      downloadLink.download = "merged_chart.png";
+      downloadLink.click();
+    },
   }
 }
 </script>
@@ -333,6 +411,28 @@ export default {
 }
 body{
   background-color: white;
+}
+.btnDl{
+  height: 35px;
+  width: 275px;
+  background-color: #C61B6A;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  margin-top: 25px;
+}
+.btnDl:hover{
+  cursor:pointer;
+  background-color: darkmagenta;
+}
+.btnNoDl{
+  height: 35px;
+  width: 275px;
+  background-color: lightgray;
+  color: darkgray;
+  border-radius: 10px;
+  border: none;
+  margin-top: 25px;
 }
 #chart{
   text-align: -webkit-center;

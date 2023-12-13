@@ -1,10 +1,23 @@
 
+.rangecolor[type="range"] {
+  accent-color: #C61B6A;
+}
+.rangecolor2[type="range"] {
+  accent-color: darkmagenta;
+}
 body{
   background-color: white;
 }
 #chart{
   text-align: -webkit-center;
   margin: 35px 5%;
+}
+#chart2{
+  text-align: -webkit-center;
+  margin: 35px 5%;
+}
+.containerGraph{
+  width: -webkit-fill-available;
 }
 .flexStats{
   display: flex;
@@ -34,6 +47,7 @@ li{
 }
 .slidePoints{
   width: -webkit-fill-available;
+  color:red !important;
 }
 .statsBlock{
   display: flex;
